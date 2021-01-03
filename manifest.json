@@ -1,0 +1,36 @@
+{
+    "manifest_version": 2,
+    "name": "Cherry-picker",
+    "version": "1.0",
+    "description": "To get all SHA from a github PR",
+    "background": {
+        "scripts": ["background.js"]
+      },
+    "permissions": [
+        "activeTab",
+        "storage",
+        "<all_urls>"
+    ],
+    "browser_action": {
+        "browser_style": true,
+        "default_icon": {
+            "48": "icons/cherry-48.png"
+        },
+        "default_title": "Cherry-picker",
+        "default_popup": "popup/popup.html"
+    },
+    "icons": {
+        "48": "icons/cherry-48.png",
+        "96": "icons/cherry-96.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://github.com/*/*/pull/*/commits"
+            ],
+            "js": [
+                "github_DOM_parser.js"
+            ]
+        }
+    ]
+}
